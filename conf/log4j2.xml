@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN" monitorInterval="30">
+    <Appenders>
+        <Console name="Console" target="SYSTEM_OUT">
+            <ThresholdFilter level="DEBUG" onMatch="ACCEPT" onMismatch="DENY" />
+            <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss:SSS} [%p] [%X{REQUEST_ID}] [%C.%M.%L] [%t] : %m %n"/>
+        </Console>
+        <RollingFile name="RollingFile" fileName="./logs/app.log" filePattern="./logs/app_%d{yyyy-MM-dd}_%i.log">
+            <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss:SSS} [%p] [%X{REQUEST_ID}] [%C.%M.%L] [%t] : %m %n"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy modulate="true" interval="24"/>
+                <SizeBasedTriggeringPolicy size="500 MB"/>
+            </Policies>
+        </RollingFile>
+    </Appenders>
+    <Loggers>
+
+        <Root level="warn">
+            <AppenderRef ref="Console"/>
+        </Root>
+
+        <logger name="com.datafusion.maven" level="warn" additivity="false">
+            <AppenderRef ref="Console"/>
+            <appender-ref ref="RollingFile"/>
+        </logger>
+
+    </Loggers>
+</Configuration>
