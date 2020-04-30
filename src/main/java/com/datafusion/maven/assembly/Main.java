@@ -10,10 +10,10 @@ public class Main {
 
     private static final Logger LOG = LoggerFactory.getLogger(Main.class);
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
 
         MDC.put("REQUEST_ID", UUID.randomUUID().toString());
-        EchoServer echoServer = new EchoServer();
+        EchoServer.main(args);
     }
 
 }

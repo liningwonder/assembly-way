@@ -25,12 +25,15 @@ import io.netty.handler.logging.LoggingHandler;
 import io.netty.handler.ssl.SslContext;
 import io.netty.handler.ssl.SslContextBuilder;
 import io.netty.handler.ssl.util.SelfSignedCertificate;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Echoes back any received data from a client.
  */
-public final class EchoServer {
+public class EchoServer {
 
+    private static final Logger LOG = LoggerFactory.getLogger(EchoServer.class);
     private static final boolean SSL = System.getProperty("ssl") != null;
     private static final int PORT = Integer.parseInt(System.getProperty("port", "8007"));
 
@@ -68,7 +71,7 @@ public final class EchoServer {
 
             // Start the server.
             ChannelFuture f = b.bind(PORT).sync();
-
+            LOG.warn("start up echo server");
             // Wait until the server socket is closed.
             f.channel().closeFuture().sync();
         } finally {

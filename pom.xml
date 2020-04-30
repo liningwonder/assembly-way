@@ -82,6 +82,9 @@
                         <!--打包后包含pom文件-->
                         <addMavenDescriptor>true</addMavenDescriptor>
                     </archive>
+                    <excludes>
+                        <exclude>log4j2.xml</exclude>
+                    </excludes>
                 </configuration>
             </plugin>
             <plugin>
