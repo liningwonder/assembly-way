@@ -37,7 +37,7 @@ CLASSPATH="$base/conf:$CLASSPATH";
 
 cd $bin_abs_path
 
-$JAVA $JAVA_OPTS $JAVA_DEBUG_OPT $CANAL_OPTS -classpath .:$CLASSPATH com.datafusion.maven.assembly.Main >>$START_LOG 2>&1 &
+$JAVA $JAVA_OPTS -classpath .:$CLASSPATH com.datafusion.maven.assembly.Main >>$START_LOG 2>&1 &
 
 echo $! > $base/bin/admin.pid
 
